@@ -10,7 +10,6 @@ Press `Win+S` or click the search icon and Rover pops up in the corner, greets y
 
 - Windows 10 or 11
 - **DoubleAgent**, a free, open-source replacement for Microsoft Agent: [download](https://sourceforge.net/projects/doubleagent/files/latest/download)
-- **`rover.acs`**, the Rover character file (not included, see step 2)
 
 ## Install
 
@@ -18,34 +17,25 @@ Press `Win+S` or click the search icon and Rover pops up in the corner, greets y
 
 [Download DoubleAgent](https://sourceforge.net/projects/doubleagent/files/latest/download) and run the installer with the default options.
 
-### 2. Get `rover.acs`
-
-Rover is Microsoft's property, so this repository can't ship the character file. Copy it from any Windows XP installation (a virtual machine works too):
-
-```
-C:\Windows\srchasst\chars\rover.acs
-```
-
-### 3. Download this repository
+### 2. Download this repository
 
 Click **Code → Download ZIP** at the top of this page and unzip it anywhere, e.g. to your Desktop.
 
-### 4. Run the installer
+### 3. Run the installer
 
-1. Put `rover.acs` in the unzipped folder, next to `install.ps1`. Your `Downloads` folder works too, because the installer looks there automatically.
-2. Open the unzipped folder in File Explorer, click the address bar, type `powershell` and press Enter.
-3. In the PowerShell window, paste:
+1. Open the unzipped folder in File Explorer, click the address bar, type `powershell` and press Enter.
+2. In the PowerShell window, paste:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File install.ps1
 ```
 
-4. Press `Win+S`. Rover should pop up. 🐶
+3. Press `Win+S`. Rover should pop up. 🐶
 
 Rover is installed to `%LOCALAPPDATA%\RoverSearchCompanion` and starts automatically with Windows.
 
 **Installer options:**
-- `-AcsPath "C:\path\to\rover.acs"`: use a character file from another location
+- `-AcsPath "C:\path\to\rover.acs"`: use a different character file
 - `-NoAutostart`: don't start Rover with Windows
 
 ## Uninstall
@@ -65,7 +55,7 @@ A small PowerShell script checks every 300 ms which window is in the foreground.
 | Problem | Fix |
 |---|---|
 | `DoubleAgent is not installed` | Install DoubleAgent (step 1) and run the installer again. |
-| `not a valid Microsoft Agent character file` | Your `rover.acs` is damaged or isn't a real character file. Copy it again from Windows XP. |
+| `not a valid Microsoft Agent character file` | Your `rover.acs` is damaged or isn't a real character file. Download the repository again. |
 | Rover doesn't appear | Check that `rover.acs` is in `%LOCALAPPDATA%\RoverSearchCompanion`, then sign out and back in. |
 | Search closes when Rover appears / wrong position | Open an issue with your Windows version and screen setup. |
 
@@ -84,10 +74,8 @@ Wciśnij `Win+S` albo kliknij lupkę, a Rover pojawi się w rogu ekranu, przywit
 ### Instalacja
 
 1. **Zainstaluj DoubleAgent:** [pobierz](https://sourceforge.net/projects/doubleagent/files/latest/download) i uruchom instalator z domyślnymi ustawieniami.
-2. **Zdobądź `rover.acs`:** skopiuj go z dowolnego Windows XP (może być maszyna wirtualna), z folderu `C:\Windows\srchasst\chars\rover.acs`. Nie dołączamy go, bo Rover należy do Microsoftu.
-3. **Pobierz to repozytorium:** kliknij **Code → Download ZIP** na górze strony i rozpakuj, np. na Pulpit.
-4. **Uruchom instalator:**
-   - wrzuć `rover.acs` do rozpakowanego folderu, obok `install.ps1` (albo zostaw go w `Pobrane`, instalator sam tam zajrzy),
+2. **Pobierz to repozytorium:** kliknij **Code → Download ZIP** na górze strony i rozpakuj, np. na Pulpit.
+3. **Uruchom instalator:**
    - otwórz ten folder w Eksploratorze, kliknij pasek adresu, wpisz `powershell` i naciśnij Enter,
    - wklej:
 
@@ -95,7 +83,7 @@ Wciśnij `Win+S` albo kliknij lupkę, a Rover pojawi się w rogu ekranu, przywit
 powershell -ExecutionPolicy Bypass -File install.ps1
 ```
 
-5. Wciśnij `Win+S`. Rover powinien wyskoczyć. 🐶
+4. Wciśnij `Win+S`. Rover powinien wyskoczyć. 🐶
 
 Rover uruchamia się automatycznie z Windows.
 
