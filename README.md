@@ -23,6 +23,8 @@ Click **Code → Download ZIP** at the top of this page and unzip it anywhere, e
 
 ### 3. Run the installer
 
+> Use a normal PowerShell window, **not** *Run as administrator* - Rover is installed for the current user and doesn't need admin rights.
+
 1. Open the unzipped folder in File Explorer, click the address bar, type `powershell` and press Enter.
 2. In the PowerShell window, paste:
 
@@ -56,6 +58,7 @@ A small PowerShell script checks every 300 ms which window is in the foreground.
 |---|---|
 | `DoubleAgent is not installed` | Install DoubleAgent (step 1) and run the installer again. |
 | `not a valid Microsoft Agent character file` | Your `rover.acs` is damaged or isn't a real character file. Download the repository again. |
+| `Join-Path` / Startup folder error, or Rover installed for the wrong user | You ran the installer as administrator. Run it again in a normal PowerShell window. |
 | Rover doesn't appear | Check that `rover.acs` is in `%LOCALAPPDATA%\RoverSearchCompanion`, then sign out and back in. |
 | Search closes when Rover appears / wrong position | Open an issue with your Windows version and screen setup. |
 
@@ -75,7 +78,7 @@ Wciśnij `Win+S` albo kliknij lupkę, a Rover pojawi się w rogu ekranu, przywit
 
 1. **Zainstaluj DoubleAgent:** [pobierz](https://sourceforge.net/projects/doubleagent/files/latest/download) i uruchom instalator z domyślnymi ustawieniami.
 2. **Pobierz to repozytorium:** kliknij **Code → Download ZIP** na górze strony i rozpakuj, np. na Pulpit.
-3. **Uruchom instalator:**
+3. **Uruchom instalator:** (w zwykłym PowerShellu, **nie** jako administrator, bo Rover instaluje się dla bieżącego użytkownika)
    - otwórz ten folder w Eksploratorze, kliknij pasek adresu, wpisz `powershell` i naciśnij Enter,
    - wklej:
 

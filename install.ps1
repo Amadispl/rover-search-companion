@@ -23,6 +23,16 @@ function Test-AcsFile([string]$Path) {
 
 Write-Host "`n== Rover Search Companion installer ==`n" -ForegroundColor Cyan
 
+# Rover is installed per user - running as admin may install him for the wrong account
+$isAdmin = ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
+if ($isAdmin) {
+    Write-Host "Warning: running as administrator ($env:USERNAME)." -ForegroundColor Yellow
+    Write-Host "Rover will be installed for THIS account only. Admin rights are not needed -"
+    Write-Host "close this window and run the installer in a normal PowerShell, unless $env:USERNAME is really you."
+    $answer = Read-Host "Continue anyway? (y/N)"
+    if ($answer -notmatch '^(y|yes|t|tak)$') { exit 1 }
+}
+
 # 1. DoubleAgent
 if (-not (Test-Path 'Registry::HKEY_CLASSES_ROOT\DoubleAgent.Control')) {
     Write-Host "DoubleAgent is not installed." -ForegroundColor Red
@@ -59,8 +69,11 @@ Copy-Item -LiteralPath $AcsPath (Join-Path $InstallDir 'rover.acs') -Force
 Write-Host "[ok] Installed to $InstallDir"
 
 # 4. Autostart
-$lnk = Join-Path ([Environment]::GetFolderPath('Startup')) 'Rover Search Companion.lnk'
+$startup = [Environment]::GetFolderPath('Startup')
+if (-not $startup) { $startup = Join-Path $env:APPDATA 'Microsoft\Windows\Start Menu\Programs\Startup' }
+$lnk = Join-Path $startup 'Rover Search Companion.lnk'
 if (-not $NoAutostart) {
+    New-Item -ItemType Directory -Force $startup | Out-Null
     $s = (New-Object -ComObject WScript.Shell).CreateShortcut($lnk)
     $s.TargetPath       = Join-Path $env:WINDIR 'System32\wscript.exe'
     $s.Arguments        = '"' + (Join-Path $InstallDir 'start_rover.vbs') + '"'
