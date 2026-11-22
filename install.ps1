@@ -26,7 +26,7 @@ Write-Host "`n== Rover Search Companion installer ==`n" -ForegroundColor Cyan
 # 1. DoubleAgent
 if (-not (Test-Path 'Registry::HKEY_CLASSES_ROOT\DoubleAgent.Control')) {
     Write-Host "DoubleAgent is not installed." -ForegroundColor Red
-    Write-Host "Install it first from https://sourceforge.net/projects/doubleagent/ and run this script again."
+    Write-Host "Install it first from https://sourceforge.net/projects/doubleagent/files/latest/download and run this script again."
     exit 1
 }
 Write-Host "[ok] DoubleAgent found"
