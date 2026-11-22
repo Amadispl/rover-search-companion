@@ -1,0 +1,4 @@
+# Microsoft Agent characters are copyrighted by Microsoft - never commit them
+*.acs
+*.acf
+*.aca
